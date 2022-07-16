@@ -1,0 +1,8 @@
+{
+	"Name" : "It's a D10 ok",
+	"Description" : "leave me alone",
+	"Values" : [1,2,3,4,5,6,7,8,9,10],
+	"Break" : [],
+	"Color": "#ff0000",
+	"Rarity": "Common"
+}

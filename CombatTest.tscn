@@ -1,0 +1,245 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://CombatTest.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/MC.png" type="Texture" id=2]
+[ext_resource path="res://DiceSelector.gd" type="Script" id=3]
+[ext_resource path="res://DiceField.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/Demon1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Background.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/DiceBackground.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/HBorder.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Hearts.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/bagInside.png" type="Texture" id=10]
+[ext_resource path="res://UI/my_theme.tres" type="Theme" id=11]
+[ext_resource path="res://UI/BarTheme.tres" type="Theme" id=12]
+[ext_resource path="res://AffinityBar.gd" type="Script" id=13]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 9 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="BitmapFont" id=4]
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[node name="CombatTest" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PeoplePlane" type="Node2D" parent="."]
+position = Vector2( -2, 354 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="PeoplePlane"]
+position = Vector2( 685, 114 )
+scale = Vector2( 2.66406, 2.05469 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MCSprite" type="Sprite" parent="PeoplePlane"]
+position = Vector2( 507, 124 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EnemyName" type="Label" parent="PeoplePlane"]
+margin_left = 860.0
+margin_top = 66.0
+margin_right = 951.0
+margin_bottom = 85.0
+theme = ExtResource( 11 )
+text = "Lesser Demon"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EnemySprite" type="Sprite" parent="PeoplePlane"]
+position = Vector2( 906, 131 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MCHearts" type="Node2D" parent="PeoplePlane"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart1" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
+position = Vector2( 415, 36 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart2" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
+position = Vector2( 473, 35 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart3" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
+position = Vector2( 532, 35 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EnemyHearts" type="Node2D" parent="PeoplePlane"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart1" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
+position = Vector2( 848, 34 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart2" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
+position = Vector2( 906, 33 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Heart3" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
+position = Vector2( 965, 33 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 3 )
+frame = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DiceField" type="Node2D" parent="."]
+position = Vector2( 315, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="DiceField"]
+position = Vector2( 368.5, 167 )
+scale = Vector2( 1.06406, 0.880208 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Dice" type="Node2D" parent="DiceField"]
+
+[node name="HBorder" type="Sprite" parent="DiceField"]
+position = Vector2( 192, 341 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="DiceSelector" type="Control" parent="."]
+margin_right = 342.0
+margin_bottom = 600.0
+theme = ExtResource( 11 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DiceSelector"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="DiceSelector"]
+margin_right = 342.0
+margin_bottom = 600.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="DiceSelector"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -16.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DiceSelector/MarginContainer"]
+margin_right = 318.0
+margin_bottom = 576.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="OptionContainer" type="VBoxContainer" parent="DiceSelector/MarginContainer/ScrollContainer"]
+
+[node name="Sprite" type="Sprite" parent="DiceSelector"]
+position = Vector2( 342, 85 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+
+[node name="Roll" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 43.0
+text = "Roll"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AffinityBar" type="Control" parent="."]
+margin_left = 674.0
+margin_top = 320.0
+margin_right = 714.0
+margin_bottom = 360.0
+theme = ExtResource( 12 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Roll" to="." method="_on_Roll_pressed"]

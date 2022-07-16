@@ -1,0 +1,8 @@
+{
+	"Name" : "Pyramido",
+	"Description" : "Creativity is hard and I don't have to come up with good words yet",
+	"Values" : [1,2,3,4],
+	"Break" : [1,2,3,0],
+	"Color": "#65bdf0",
+	"Rarity": "Common"
+}

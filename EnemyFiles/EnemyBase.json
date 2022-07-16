@@ -1,0 +1,23 @@
+{
+	"Name": "Lesser Demon",
+	"Image": "res://Sprites/Demon1.png",
+	"Health" : 3,
+	"Ranges": [
+		{"Type" : "Fail",
+		"Range" : [-99,1]},
+		{"Type" : "Attack",
+		"Range" : [2,4]},
+		{"Type" : "Damage",
+		"Range" : [5,7]},
+		{"Type" : "Crit",
+		"Range" : [8,8]},
+		{"Type" : "Damage",
+		"Range" : [9,10]},
+		{"Type" : "Attack",
+		"Range" : [11,12]},
+		{"Type" : "Fail",
+		"Range" : [13,99]}],
+	"Drops" : "Normal",
+	"Gold" : [50,100],
+	"Type" : "Common"
+}
