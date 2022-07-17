@@ -1,6 +1,6 @@
 {
 	"Name": "Lesser Demon",
-	"Image": "res://Sprites/Demon1.png",
+	"Image": "res://Sprites/Enemies/Demon1.png",
 	"Health" : 3,
 	"Ranges": [
 		{"Type" : "Fail",
@@ -17,7 +17,7 @@
 		"Range" : [11,12]},
 		{"Type" : "Fail",
 		"Range" : [13,99]}],
-	"Drops" : "Bag",	
+	"Drops" : "Bag",
 	"Gold" : [50,100],
 	"Type" : "Common"
 }

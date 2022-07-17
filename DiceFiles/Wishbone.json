@@ -1,0 +1,11 @@
+{
+	"Name" : "Wishbone",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [0,0,0,6,6,6],
+	"Break" : [0,1,2],
+	"Block" : [3],
+	"Heal" : [4],
+	"Target" : [5],
+	"Color": "#cfb6bb",
+	"Rarity": "Uncommon"
+}

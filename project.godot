@@ -15,12 +15,12 @@ config/icon="res://icon.png"
 
 [autoload]
 
-DiceHandler="*res://Scripts/DiceHandler.gd"
-Inventory="*res://Scripts/Inventory.gd"
-EnemyHandler="*res://Scripts/EnemyHandler.gd"
-MapHandler="*res://Scripts/MapGlobal.gd"
-Global="*res://Scripts/Global.gd"
-EventHandler="*res://Scripts/EventHandler.gd"
+DiceHandler="*res://Autoloads/DiceHandler.gd"
+Inventory="*res://Autoloads/Inventory.gd"
+EnemyHandler="*res://Autoloads/EnemyHandler.gd"
+MapHandler="*res://Autoloads/MapGlobal.gd"
+Global="*res://Autoloads/Global.gd"
+EventHandler="*res://Autoloads/EventHandler.gd"
 
 [display]
 

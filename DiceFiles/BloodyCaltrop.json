@@ -1,0 +1,11 @@
+{
+	"Name" : "Bloody Caltrop",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [1,2,3,4],
+	"Break" : [0],
+	"Block" : [],
+	"Heal" : [],
+	"Target" : [1,2],
+	"Color": "#d62b4a",
+	"Rarity": "Uncommon"
+}

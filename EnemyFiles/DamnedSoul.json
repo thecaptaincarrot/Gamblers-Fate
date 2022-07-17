@@ -1,0 +1,23 @@
+{
+	"Name": "Damned Soul",
+	"Image": "res://Sprites/Enemies/DamnedSoul.png",
+	"Health" : 2,
+	"Ranges": [
+		{"Type" : "Fail",
+		"Range" : [-99,-8]},
+		{"Type" : "Damage",
+		"Range" : [-7,0]},
+		{"Type" : "Attack",
+		"Range" : [1,3]},
+		{"Type" : "Fail",
+		"Range" : [4,6]},
+		{"Type" : "Attack",
+		"Range" : [7,9]},
+		{"Type" : "Damage",
+		"Range" : [10,13]},
+		{"Type" : "Fail",
+		"Range" : [14,99]}],
+	"Drops" : "Bag",
+	"Gold" : [0,48],
+	"Type" : "Common"
+}

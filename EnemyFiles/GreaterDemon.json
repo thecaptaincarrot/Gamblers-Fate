@@ -1,0 +1,23 @@
+{
+	"Name": "Greater Demon",
+	"Image": "res://Sprites/Enemies/GreaterDemon.png",
+	"Health" : 4,
+	"Ranges": [
+		{"Type" : "Fail",
+		"Range" : [-99,5]},
+		{"Type" : "Attack",
+		"Range" : [6,10]},
+		{"Type" : "Damage",
+		"Range" : [11,12]},
+		{"Type" : "Crit",
+		"Range" : [13,13]},
+		{"Type" : "Damage",
+		"Range" : [14,14]},
+		{"Type" : "Attack",
+		"Range" : [15,17]},
+		{"Type" : "Fail",
+		"Range" : [18,99]}],
+	"Drops" : "RareBag",	
+	"Gold" : [100,200],
+	"Type" : "Rare"
+}

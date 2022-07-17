@@ -1,0 +1,11 @@
+{
+	"Name" : "Fence Sitter",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [6,4,2,4,2,4,2,8],
+	"Break" : [0,7],
+	"Block" : [4],
+	"Heal" : [],
+	"Target" : [],
+	"Color": "#ff9ee8",
+	"Rarity": "Common"
+}

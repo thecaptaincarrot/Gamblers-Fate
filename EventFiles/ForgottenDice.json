@@ -1,0 +1,34 @@
+{
+	"Name": "Free Dice Bag",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://icon.png",
+	"Text": "As you wander the infernal halls, you come upon a forgotten bag of dice",
+	"Choices":[
+		{"Text": "Finder's keepers!",
+			"Requirements":[
+				
+				],
+			"Outcomes":[
+				{"Text" : "You swiftly pocket the extra dice",
+				"Image" : "res://icon.png",
+				"Events" : ["NewDice"],
+				"Probability" : 80},
+				{"Text" : "An Imp leaps out of the bag bites your finger. Ouch!",
+				"Image" : "res://icon.png",
+				"Events" : ["OneDamage"],
+				"Probability" : 20}
+				]
+		},
+		{"Text": "Better Not",
+			"Requirements":[
+				
+				],
+			"Outcomes":[
+				{"Text" : "You leave the bag where you found it... It's not your's after all.",
+				"Image" : "res://icon.png",
+				"Events" : [],
+				"Probability" : 1}
+				],
+		}
+		]
+}

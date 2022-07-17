@@ -1,34 +1,251 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://CombatTest.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/CombatTest.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/MC.png" type="Texture" id=2]
-[ext_resource path="res://DiceSelector.gd" type="Script" id=3]
-[ext_resource path="res://DiceField.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/DiceSelector.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/DiceField.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/Demon1.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Background.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/DiceBackground.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/HBorder.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Hearts.png" type="Texture" id=9]
+[ext_resource path="res://UI/CelticHand.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Sprites/bagInside.png" type="Texture" id=10]
 [ext_resource path="res://UI/my_theme.tres" type="Theme" id=11]
 [ext_resource path="res://UI/BarTheme.tres" type="Theme" id=12]
-[ext_resource path="res://AffinityBar.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/AffinityBar.gd" type="Script" id=13]
+[ext_resource path="res://Sprites/LightMask.png" type="Texture" id=14]
+[ext_resource path="res://UI/Roboto-Medium.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scripts/VicotryScreen.gd" type="Script" id=16]
+[ext_resource path="res://DiceSprites/Target.png" type="Texture" id=17]
+[ext_resource path="res://FadeOut.gd" type="Script" id=18]
+[ext_resource path="res://UI/EventTheme.tres" type="Theme" id=19]
+[ext_resource path="res://MainBattleCamera.gd" type="Script" id=20]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 16, 16 )
+[sub_resource type="Animation" id=6]
+resource_name = "Crit"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0 ]
+}
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 9 )
-region = Rect2( 16, 0, 16, 16 )
+[sub_resource type="Animation" id=8]
+resource_name = "Die"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../EnemyName:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="Animation" id=7]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Target"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.25, 0.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 18
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 14
+font_data = ExtResource( 15 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Bag"
+length = 3.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("VictoryPanel/Spoils/DiceBag:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VictoryPanel/Spoils/Dice1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VictoryPanel/Spoils/Dice2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("VictoryPanel/Spoils/Dice3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("VictoryPanel/Spoils/Gold:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VictoryPanel/Return:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Both"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Gold"
+
+[sub_resource type="Animation" id=15]
+resource_name = "RareBag"
+
+[sub_resource type="Animation" id=16]
+resource_name = "RareBoth"
+
+[sub_resource type="Animation" id=17]
+resource_name = "Relic"
 
 [sub_resource type="BitmapFont" id=4]
 
@@ -73,41 +290,38 @@ __meta__ = {
 }
 
 [node name="EnemySprite" type="Sprite" parent="PeoplePlane"]
+light_mask = 2
 position = Vector2( 906, 131 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 5 )
+offset = Vector2( -1, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="EnemyAnimations" type="AnimationPlayer" parent="PeoplePlane/EnemySprite"]
+anims/Crit = SubResource( 6 )
+anims/Die = SubResource( 8 )
+anims/Hurt = SubResource( 7 )
+
+[node name="Light2D" type="Light2D" parent="PeoplePlane/EnemySprite"]
+position = Vector2( -6.8, 3.6 )
+texture = ExtResource( 14 )
+color = Color( 1, 0, 0, 1 )
+energy = 0.0
+range_item_cull_mask = 2
+
+[node name="Target" type="Sprite" parent="PeoplePlane/EnemySprite"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -1.60001, -1 )
+rotation = 3.14159
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 17 )
+
+[node name="TargetAnimation" type="AnimationPlayer" parent="PeoplePlane/EnemySprite/Target"]
+anims/Target = SubResource( 18 )
 
 [node name="MCHearts" type="Node2D" parent="PeoplePlane"]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Heart1" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
-position = Vector2( 415, 36 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Heart2" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
-position = Vector2( 473, 35 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Heart3" type="AnimatedSprite" parent="PeoplePlane/MCHearts"]
-position = Vector2( 532, 35 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
 __meta__ = {
 "_edit_lock_": true
 }
@@ -117,32 +331,156 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Heart1" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
-position = Vector2( 848, 34 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
+[node name="VictoryScreen" type="Control" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -697.0
+margin_bottom = 333.0
+theme = ExtResource( 11 )
+script = ExtResource( 16 )
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Heart2" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
-position = Vector2( 906, 33 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
+[node name="VictoryPanel" type="Panel" parent="VictoryScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Heart3" type="AnimatedSprite" parent="PeoplePlane/EnemyHearts"]
-position = Vector2( 965, 33 )
-scale = Vector2( 3, 3 )
-frames = SubResource( 3 )
-frame = 1
+[node name="VICTORY" type="Label" parent="VictoryScreen/VictoryPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -67.5
+margin_top = 16.0
+margin_right = 67.5
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 9 )
+text = "VICTORY!"
+
+[node name="EnemyDefeated" type="Label" parent="VictoryScreen/VictoryPanel/VICTORY"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -167.5
+margin_top = -2.0
+margin_right = 175.5
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 10 )
+text = "Lesser Demon Defeated"
+align = 1
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
 }
+
+[node name="Spoils" type="VBoxContainer" parent="VictoryScreen/VictoryPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -158.5
+margin_top = -87.5
+margin_right = 161.5
+margin_bottom = -47.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiceBag" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_right = 320.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "Dice Bag Recovered"
+text = "Dice Bag Recovered"
+fit_content_height = true
+scroll_active = false
+
+[node name="Dice1" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_top = 22.0
+margin_right = 320.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "	-Acquired new dice: Pyramido"
+text = "	-Acquired new dice: Pyramido"
+fit_content_height = true
+scroll_active = false
+
+[node name="Dice2" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_top = 44.0
+margin_right = 320.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "	-Acquired new dice: Pyramido"
+text = "	-Acquired new dice: Pyramido"
+fit_content_height = true
+scroll_active = false
+
+[node name="Dice3" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_top = 66.0
+margin_right = 320.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "	-Acquired new dice: Pyramido"
+text = "	-Acquired new dice: Pyramido"
+fit_content_height = true
+scroll_active = false
+
+[node name="Gold" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_top = 88.0
+margin_right = 320.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "Dice Bag Recovered"
+text = "Dice Bag Recovered"
+fit_content_height = true
+scroll_active = false
+
+[node name="Relic" type="RichTextLabel" parent="VictoryScreen/VictoryPanel/Spoils"]
+margin_top = 110.0
+margin_right = 320.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 320, 0 )
+custom_fonts/normal_font = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "Dice Bag Recovered"
+text = "Dice Bag Recovered"
+fit_content_height = true
+scroll_active = false
+
+[node name="Return" type="Button" parent="VictoryScreen/VictoryPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -57.5
+margin_top = -49.0
+margin_right = 56.5
+margin_bottom = -22.0
+text = "Return to Map"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryAnimation" type="AnimationPlayer" parent="VictoryScreen"]
+anims/Bag = SubResource( 12 )
+anims/Both = SubResource( 13 )
+anims/Gold = SubResource( 14 )
+anims/RareBag = SubResource( 15 )
+anims/RareBoth = SubResource( 16 )
+anims/Relic = SubResource( 17 )
 
 [node name="DiceField" type="Node2D" parent="."]
 position = Vector2( 315, 1 )
@@ -161,8 +499,43 @@ __meta__ = {
 
 [node name="Dice" type="Node2D" parent="DiceField"]
 
-[node name="HBorder" type="Sprite" parent="DiceField"]
-position = Vector2( 192, 341 )
+[node name="Roll" type="Button" parent="DiceField"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 609.0
+margin_top = -1.0
+margin_right = 709.0
+margin_bottom = 42.0
+text = "Roll"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DiceField"]
+margin_left = 321.0
+margin_top = 64.0
+margin_right = 411.0
+margin_bottom = 104.0
+theme = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DiceField/HBoxContainer"]
+margin_top = 9.0
+margin_right = 72.0
+margin_bottom = 30.0
+text = "Total Roll:"
+
+[node name="Total" type="Label" parent="DiceField/HBoxContainer"]
+margin_left = 76.0
+margin_top = 9.0
+margin_right = 76.0
+margin_bottom = 30.0
+
+[node name="HBorder" type="Sprite" parent="."]
+position = Vector2( 507, 342 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
 
@@ -198,14 +571,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
 margin_top = 8.0
-margin_right = -16.0
+margin_right = -2.0
 margin_bottom = -16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DiceSelector/MarginContainer"]
-margin_right = 318.0
+margin_right = 332.0
 margin_bottom = 576.0
 __meta__ = {
 "_edit_lock_": true,
@@ -215,21 +588,10 @@ __meta__ = {
 [node name="OptionContainer" type="VBoxContainer" parent="DiceSelector/MarginContainer/ScrollContainer"]
 
 [node name="Sprite" type="Sprite" parent="DiceSelector"]
-position = Vector2( 342, 85 )
+position = Vector2( 358, 84 )
 rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 8 )
-
-[node name="Roll" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -100.0
-margin_bottom = 43.0
-text = "Roll"
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="AffinityBar" type="Control" parent="."]
 margin_left = 674.0
@@ -242,4 +604,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Roll" to="." method="_on_Roll_pressed"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeOut" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/FadeOut"]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( 513, 300 )
+current = true
+zoom = Vector2( 0.1, 0.1 )
+script = ExtResource( 20 )
+
+[node name="CameraTween" type="Tween" parent="MainCamera"]
+
+[connection signal="pressed" from="VictoryScreen/VictoryPanel/Return" to="." method="_on_Return_pressed"]
+[connection signal="pressed" from="DiceField/Roll" to="." method="_on_Roll_pressed"]
+[connection signal="tween_all_completed" from="CanvasLayer/FadeOut/Tween" to="CanvasLayer/FadeOut" method="_on_Tween_tween_all_completed"]

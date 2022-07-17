@@ -1,0 +1,11 @@
+{
+	"Name" : "Mirror Bone",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [-6,-5,-4,-3,-2,-1],
+	"Break" : [0,1,2],
+	"Block" : [],
+	"Heal" : [],
+	"Target" : [],
+	"Color": "#d1fffa",
+	"Rarity": "Uncommon"
+}

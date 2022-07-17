@@ -1,0 +1,11 @@
+{
+	"Name" : "Passion Cube",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [0,0,0,0,0,0],
+	"Break" : [0],
+	"Block" : [1],
+	"Heal" : [2,3],
+	"Target" : [4,5],
+	"Color": "#ff0033",
+	"Rarity": "Rare"
+}

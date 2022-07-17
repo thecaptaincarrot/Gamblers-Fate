@@ -36,16 +36,15 @@ func _ready():
 		new_heart.name = "Heart" + str(i)
 		$PeoplePlane/MCHearts.add_child(new_heart)
 	var new_shield = SHIELD.instance()
-	
 	new_shield.position = Vector2(heart_x,heart_y)
 	$PeoplePlane/MCHearts.add_child(new_shield)
-	
 	#Load Enemy
-	load_enemy(EnemyHandler.enemies[0])
+	load_enemy(EnemyHandler.get_current_enemy())
 
 
 func load_enemy(enemy_dict):
 	enemy = enemy_dict
+	print(enemy["Name"])
 	$PeoplePlane/EnemySprite.texture = load(enemy["Image"])
 	$PeoplePlane/EnemyName.text = enemy["Name"]
 	$AffinityBar.initialize(enemy["Ranges"])
@@ -67,13 +66,16 @@ func load_enemy(enemy_dict):
 		else:
 			new_heart.frame = 1
 		new_heart.name = "Heart" + str(i)
+		print(new_heart.name)
 		$PeoplePlane/EnemyHearts.add_child(new_heart)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-		
+	if Global.player_health <= 0:
+		$CanvasLayer/FadeOut.show()
+		#TODO death animation or something
+		$CanvasLayer/FadeOut/Tween.start()
 	
 
 
@@ -114,6 +116,8 @@ func _on_Roll_pressed():
 	var total_roll = 0
 	var i = 0
 	
+	var to_heal = false
+	
 	var to_erase = []
 	for die_index in field_dice:
 		var current_die = $DiceField/Dice.get_child(i)
@@ -137,18 +141,16 @@ func _on_Roll_pressed():
 				current_die.animation_queue.append("Break")
 		if die.keys().has("Heal"):
 			if die["Heal"].has(float(roll)):
-				heal_player(1)
+				to_heal = true
 				current_die.animation_queue.append("Heal")
-		if die.keys().has("Shield"):
-			if die["Shield"].has(float(roll)):
+		if die.keys().has("Block"):
+			if die["Block"].has(float(roll)):
 				blocking = true
-				current_die.animation_queue.append("Shield")
+				current_die.animation_queue.append("Block")
 		if die.keys().has("Target"):
 			if die["Target"].has(float(roll)):
 				targetting = true
 				current_die.animation_queue.append("Target")
-
-		
 		
 		i += 1
 	
@@ -157,6 +159,9 @@ func _on_Roll_pressed():
 			field_dice.erase(erase)
 	
 	yield(get_tree().create_timer(1.0),"timeout")
+	
+	$DiceField/HBoxContainer/Total.text = str(total_roll)
+	
 	for x in attack_range:
 		if total_roll >= x["Range"][0] and total_roll <= x["Range"][1]:
 			match x["Type"]:
@@ -175,6 +180,9 @@ func _on_Roll_pressed():
 					
 				"Fail":
 					damage_player(1)
+	if to_heal:
+		heal_player(1)
+	
 	$DiceSelector.update()
 
 
@@ -187,6 +195,11 @@ func heal_player(healing):
 
 
 func damage_player(damage):
+	if blocking:
+		blocking = false
+		get_node("PeoplePlane/MCHearts/Shield").show()
+		get_node("PeoplePlane/MCHearts/Shield").break_shield()
+		return
 	for i in range(0,damage):
 		var next_heart = get_node("PeoplePlane/MCHearts/Heart" + str(Global.player_health))
 		next_heart.hurt()
@@ -194,6 +207,10 @@ func damage_player(damage):
 
 
 func damage_enemy(damage):
+	if targetting:
+		targetting = false
+		$PeoplePlane/EnemySprite/Target/TargetAnimation.play("Target")
+		damage += 1
 	for i in range(0,damage):
 		var next_heart = get_node("PeoplePlane/EnemyHearts/Heart" + str(enemy_health))
 		next_heart.hurt()
@@ -229,7 +246,13 @@ func loot():
 			var new_dice = DiceHandler.generate_dice_bag() #Array of indices
 			var dice_num = 1
 			for index in new_dice:
-				get_node("VictoryScreen/VictoryPanel/Spoils/Dice" + str(dice_num)).bbcode_text = "	-Acquired new dice: " + DiceHandler.dice[index]["Name"]
+				var color = "yellow"
+				match DiceHandler.dice[index]["Rarity"]:
+					"Uncommon":
+						color = "green"
+					"Rare":
+						color = "blue"
+				get_node("VictoryScreen/VictoryPanel/Spoils/Dice" + str(dice_num)).bbcode_text = "	-Acquired new dice: [color=" + color + "]" + DiceHandler.dice[index]["Name"] + "[/color]"
 				dice_num += 1
 			$VictoryScreen/VictoryAnimation.play("Bag")
 		"Relic":

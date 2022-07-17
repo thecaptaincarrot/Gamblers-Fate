@@ -1,0 +1,11 @@
+{
+	"Name" : "Slimy Diamonds",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [1,1,2,6,6,7,8,9],
+	"Break" : [7,6],
+	"Block" : [],
+	"Heal" : [],
+	"Target" : [],
+	"Color": "#9fc775",
+	"Rarity": "Common"
+}

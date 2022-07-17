@@ -1,0 +1,11 @@
+{
+	"Name" : "Odd One Out",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [1,3,5,7],
+	"Break" : [2,3],
+	"Block" : [],
+	"Heal" : [],
+	"Target" : [],
+	"Color": "#ff9ea3",
+	"Rarity": "Common"
+}

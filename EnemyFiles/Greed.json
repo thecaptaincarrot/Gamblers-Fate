@@ -1,0 +1,13 @@
+{
+	"Name": "Greed Demon",
+	"Image": "res://Sprites/Enemies/GreedDemon.png",
+	"Health" : 1,
+	"Ranges": [
+		{"Type" : "Fail",
+		"Range" : [-99,15]},
+		{"Type" : "Crit",
+		"Range" : [16,99]}],
+	"Drops" : "RareBag",	
+	"Gold" : [100,300],
+	"Type" : "Rare"
+}

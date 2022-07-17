@@ -1,0 +1,19 @@
+{
+	"Name": "Drude",
+	"Image": "res://Sprites/Enemies/Drude.png",
+	"Health" : 2,
+	"Ranges": [
+		{"Type" : "Damage",
+		"Range" : [-99,0]},
+		{"Type" : "Fail",
+		"Range" : [1,4]},
+		{"Type" : "Attack",
+		"Range" : [5,6]},
+		{"Type" : "Fail",
+		"Range" : [7,9]},
+		{"Type" : "Damage",
+		"Range" : [10,99]}],
+	"Drops" : "Bag",	
+	"Gold" : [100,200],
+	"Type" : "Common"
+}

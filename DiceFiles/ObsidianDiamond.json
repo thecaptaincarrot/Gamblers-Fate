@@ -1,0 +1,11 @@
+{
+	"Name" : "Obsidian Diamond",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [4,4,6,6,6,7,7,8],
+	"Break" : [0],
+	"Block" : [3],
+	"Heal" : [4],
+	"Target" : [5],
+	"Color": "#575757",
+	"Rarity": "Rare"
+}

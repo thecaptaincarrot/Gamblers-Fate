@@ -1,0 +1,11 @@
+{
+	"Name" : "Even Steven",
+	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
+	"Values" : [2,4,6,8],
+	"Break" : [2,3],
+	"Block" : [],
+	"Heal" : [],
+	"Target" : [],
+	"Color": "#ff9ea3",
+	"Rarity": "Common"
+}

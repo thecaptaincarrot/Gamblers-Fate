@@ -3,7 +3,6 @@
 [ext_resource path="res://UI/Roboto-Medium.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 18
 extra_spacing_top = 2
 font_data = ExtResource( 1 )
 
