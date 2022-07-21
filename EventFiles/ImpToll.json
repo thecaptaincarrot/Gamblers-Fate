@@ -1,0 +1,30 @@
+{
+	"Name": "An Imp's Toll?",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/Imp.png",
+	"Text": "You come upon a lone imp. 'MONEY!' it screams at you 'GIVE MONEY OR DIE!'",
+	"Choices":[
+		{"Text": "Uh, sure. Here you go. [50 Gold]",
+			"Requirements":{
+				"Gold" : 50
+				},
+			"Outcomes":[
+				{"Text" : "The imp cackles to itself as it quickly swallows the coins you gave it.",
+				"Image" : "res://Events/Imp.png",
+				"Events" : ["50Gold"],
+				"Probability" : 1}
+				]
+		},
+		{"Text": "I don't think so.",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "It screeches in wordless frustration as it attacks",
+				"Image" : "res://Events/Imp.png",
+				"Events" : ["FightImp"],
+				"Probability" : 1}
+				],
+		}
+		]
+}

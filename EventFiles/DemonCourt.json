@@ -1,0 +1,41 @@
+{
+	"Name": "A dire choice",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/Combatants.png",
+	"Text": "You come upon a Greater Demon and his attendants. 'Eternity has become boring,' it says, 'You will fight one of my servants for my amusement.'",
+	"Choices":[
+		{"Text": "Fight the Imp",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The Greater Demon rolls his three eyes, 'Then you are a coward. Let's even the playing field a little.'",
+				"Image" : "res://Events/Imp.png",
+				"Events" : ["OneDamage","FightImp"],
+				"Probability" : 1}
+				]
+		},
+		{"Text": "Fight the Lesser Demon",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The Greater Demon leans forward with interest, 'Don't die too quickly now.'",
+				"Image" : "res://Events/LesserDemon1.png",
+				"Events" : ["FightLesser"],
+				"Probability" : 1}
+				],
+		},
+		{"Text": "Fight The Greater Demon",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The Demon's face splits into a wide Grin. 'Excellent choice. I knew you would amuse.'",
+				"Image" : "res://Events/GreaterDemon.png",
+				"Events" : ["FightGreater"],
+				"Probability" : 1}
+				]
+		}
+		]
+}

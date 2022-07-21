@@ -1,13 +1,14 @@
 extends Camera2D
 
 const MINY = 200
-const MAXY = -10000
+var MAXY = -10000
 const CAMERAACCELERATION = 5.0
 
 var target_position = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	MAXY = MapHandler.map_height * -64
 	zoom = Vector2(.6,.6)
 
 

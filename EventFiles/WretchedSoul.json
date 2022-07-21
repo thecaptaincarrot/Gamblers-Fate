@@ -1,0 +1,49 @@
+{
+	"Name": "Wretched One",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/Damned.png",
+	"Text": "Another damned soul limps up to you. 'Please,' he says, 'I haven't eaten in months. Spare some coins so I can buy bread from the Greed Demon? You can have this dice bag...'",
+	"Choices":[
+		{"Text": "Sounds like a good deal [100 Gold]",
+			"Requirements":{
+				"Gold" : 100
+				},
+			"Outcomes":[
+				{"Text" : "The wretch falls to his knees at your feet 'Oh thank you!' he says, 'Here is the dice bag, as promised!'",
+				"Image" : "res://Events/Damned.png",
+				"Events" : ["100Gold","NewDice"],
+				"Probability" : 70},
+				{"Text" : "As soon as his fingers close around your coins he takes off running. Apparently he wasn't as invalid as he pretended.",
+				"Image" : "res://Events/Empty.png",
+				"Events" : ["100Gold"],
+				"Probability" : 20},
+				{"Text" : "The wretch grins crookedly, 'I knew you had cash. Now I'll be taking the rest too.'",
+				"Image" : "res://Events/Damned.png",
+				"Events" : ["FightDamned"],
+				"Probability" : 10}
+				]
+		},
+		{"Text": "I'll take that dice bag off your corpse",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The wretch's eyes harden as he prepares for combat.",
+				"Image" : "res://Events/Damned.png",
+				"Events" : ["FightDamned"],
+				"Probability" : 1}
+				],
+		},
+		{"Text": "I'm broke too, sorry",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The wretch hangs his head and silently limps away",
+				"Image" : "res://Events/Imp.png",
+				"Events" : [],
+				"Probability" : 1}
+				],
+		}
+		]
+}

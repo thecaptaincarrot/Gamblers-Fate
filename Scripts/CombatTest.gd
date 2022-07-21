@@ -15,7 +15,8 @@ var animations_finished = 0
 
 var enemy = {}
 var attack_range = {}
-var enemy_health = 399
+var enemy_health = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,7 +62,7 @@ func load_enemy(enemy_dict):
 		if i % 6 == 0:
 			heart_y += 32
 			heart_x = 832
-		if i > Global.player_health:
+		if i > enemy_health:
 			new_heart.frame = 0
 		else:
 			new_heart.frame = 1
@@ -89,6 +90,7 @@ func add_to_field(index):
 	if field_dice.count(index) < Inventory.get_dice_count(index) and len(field_dice) < 5:
 		field_dice.append(index)
 		$DiceField.update_field(field_dice)
+		$DiceDown.play()
 	pass
 
 
@@ -97,7 +99,9 @@ func remove_from_field(index):
 	if state != GAME:
 		return
 	field_dice.erase(index)
+	$DiceSelector.dice_remove(index)
 	$DiceField.update_field(field_dice)
+	$DiceUp.play()
 
 
 func field_dice_done():
@@ -110,6 +114,7 @@ func _on_Roll_pressed():
 	if field_dice == []:
 		return 
 	
+	$Roll.play()
 	$DiceField/Roll.disabled = true
 	animations_finished = len(field_dice)
 	
@@ -168,18 +173,19 @@ func _on_Roll_pressed():
 				"Crit":
 					$PeoplePlane/EnemySprite/EnemyAnimations.play("Crit")
 					damage_enemy(2)
-					
+					$EnemyCrit.play()
 				"Damage":
 					$PeoplePlane/EnemySprite/EnemyAnimations.play("Hurt")
 					damage_enemy(1)
-					
+					$EnemyHit.play()
 				"Attack":
 					$PeoplePlane/EnemySprite/EnemyAnimations.play("Hurt")
 					damage_player(1)
 					damage_enemy(1)
-					
+					$BothHit.play()
 				"Fail":
 					damage_player(1)
+					$EnemyHit.play()
 	if to_heal:
 		heal_player(1)
 	
@@ -268,11 +274,12 @@ func loot():
 			$VictoryScreen/VictoryAnimation.play("Both")
 		"RareBag":
 			var new_dice = DiceHandler.generate_rare_bag() #Array of indices
+			print(new_dice)
 			var dice_num = 1
 			for index in new_dice:
 				get_node("VictoryScreen/VictoryPanel/Spoils/Dice" + str(dice_num)).bbcode_text = "	-Acquired new dice: " + DiceHandler.dice[index]["Name"]
 				dice_num += 1
-			$VictoryScreen/VictoryAnimation.play("RareBag")
+			$VictoryScreen/VictoryAnimation.play("Bag")
 		"RareBoth":
 			var new_dice = DiceHandler.generate_rare_bag() #Array of indices
 			var dice_num = 1
@@ -280,10 +287,14 @@ func loot():
 				get_node("VictoryScreen/VictoryPanel/Spoils/Dice" + str(dice_num)).bbcode_text = "	-Acquired new dice: " + DiceHandler.dice[index]["Name"]
 				dice_num += 1
 			pass #TODO Relics
-			$VictoryScreen/VictoryAnimation.play("RareBoth")
+			$VictoryScreen/VictoryAnimation.play("Both")
 		"Gold":
 			$VictoryScreen/VictoryAnimation.play("Gold")
 
 
 func _on_Return_pressed():
 	get_tree().change_scene("res://Map.tscn")
+
+
+func _on_TextureButton_pressed():
+	$CanvasLayer/Instructions.show()

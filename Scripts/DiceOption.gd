@@ -129,3 +129,8 @@ func _on_Minus_pressed():
 	emit_signal("FieldRemove",inventory_index)
 	if int($Available.text) < inventory_amount:
 		$Available.text = str(int($Available.text) + 1)
+
+
+func on_field_dice_removed():
+	if int($Available.text) < inventory_amount:
+		$Available.text = str(int($Available.text) + 1)

@@ -40,11 +40,11 @@ func load_enemies():
 		var enemy_dict = {}
 		var file_to_read = File.new()
 		
-		var path_to_file = directory_path + "/" + file_name
+		var path_to_file = directory_path +  file_name
 		file_to_read.open(path_to_file, File.READ)
 		
 		var text = file_to_read.get_as_text()
-		enemy_dict = parse_json(text)
+		enemy_dict = JSON.parse(text).result
 		enemy_dict["Index"] = index
 		match enemy_dict["Type"]:
 			"Common":
@@ -60,6 +60,17 @@ func load_enemies():
 	print(common_enemies)
 	print(rare_enemies)
 	files.clear()
+
+
+func set_enemy_name(text):
+	for enemy in enemies:
+		if enemy["Name"] == text:
+			to_fight = enemy["Index"]
+			print("Found Enemy ",text)
+			return
+	
+	print("Failed to find enemy ",text)
+	pass
 
 
 func get_enemy_from_index(index):

@@ -1,0 +1,45 @@
+{
+	"Name": "Potion Seller",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/GreedDemon.png",
+	"Text": "A Greed Demon approaches you, 'I'm here to sell, not fight. One potion heals your body completely, the other increases your maximum health.'",
+	"Choices":[
+		{
+			"Text": "Heal to full [150 gold]",
+			"Requirements":{
+				"Gold" : 150,
+				"Health" : "NotFull"
+				},
+			"Outcomes":[
+				{"Text" : "You see the glint of a yellow smile under the hood, 'Pleasure doing business.'",
+				"Image" : "res://Events/GreedDemon.png",
+				"Events" : ["HealAll","150Gold"],
+				"Probability" : 1}
+				]
+		},
+		{
+			"Text": "Increase Max Health [200 gold]",
+			"Requirements":{
+				"Gold" : 200
+				},
+			"Outcomes":[
+				{"Text" : "You see the glint of a yellow smile under the hood, 'Pleasure doing business.'",
+				"Image" : "res://Events/GreedDemon.png",
+				"Events" : ["HealthIncrase","200Gold"],
+				"Probability" : 1}
+				],
+		},
+		{
+			"Text": "Save your money",
+			"Requirements":{
+				
+				},
+			"Outcomes":[
+				{"Text" : "'Thanks for nothing,' it says, 'I hope my brothers kill you.'",
+				"Image" : "res://Events/GreedDemon.png",
+				"Events" : [],
+				"Probability" : 1}
+				],
+		}
+		]
+}

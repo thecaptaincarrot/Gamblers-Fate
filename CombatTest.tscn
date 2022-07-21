@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Scripts/CombatTest.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/MC.png" type="Texture" id=2]
@@ -20,6 +20,19 @@
 [ext_resource path="res://FadeOut.gd" type="Script" id=18]
 [ext_resource path="res://UI/EventTheme.tres" type="Theme" id=19]
 [ext_resource path="res://MainBattleCamera.gd" type="Script" id=20]
+[ext_resource path="res://Music/GamblersBattle.wav" type="AudioStream" id=21]
+[ext_resource path="res://Sounds/DiceDown.wav" type="AudioStream" id=22]
+[ext_resource path="res://Sounds/DiceUp.wav" type="AudioStream" id=23]
+[ext_resource path="res://Sounds/EnemyCrit.wav" type="AudioStream" id=24]
+[ext_resource path="res://Sounds/EnemyDead.wav" type="AudioStream" id=25]
+[ext_resource path="res://Sounds/EnemyHit.wav" type="AudioStream" id=26]
+[ext_resource path="res://Sounds/DiceBreak.wav" type="AudioStream" id=27]
+[ext_resource path="res://Sounds/DiceRoll.wav" type="AudioStream" id=28]
+[ext_resource path="res://DiceSprites/Heal.png" type="Texture" id=29]
+[ext_resource path="res://DiceSprites/DiceBreak.png" type="Texture" id=30]
+[ext_resource path="res://DiceSprites/Shield.png" type="Texture" id=31]
+[ext_resource path="res://Map/Help.png" type="Texture" id=32]
+[ext_resource path="res://Instructions.gd" type="Script" id=33]
 
 [sub_resource type="Animation" id=6]
 resource_name = "Crit"
@@ -618,6 +631,142 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="CanvasLayer/FadeOut"]
 
+[node name="Instructions" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 11 )
+color = Color( 0, 0, 0, 0.458824 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 422.0
+margin_top = 409.0
+margin_right = 517.0
+margin_bottom = 433.0
+text = "Your Health"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 854.0
+margin_top = 406.0
+margin_right = 979.0
+margin_bottom = 430.0
+text = "Enemy's Health"
+
+[node name="Label3" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 462.0
+margin_top = 305.0
+margin_right = 799.0
+margin_bottom = 356.0
+text = "Hover over each range to see what it is"
+
+[node name="Label4" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 773.0
+margin_top = 195.0
+margin_right = 1110.0
+margin_bottom = 327.0
+text = "CRIT: 2 damage to enemy
+DAMAGE: 1 damage to enemy
+ATTACK: 1 damage to enemy,
+1 damage to player
+FAIL: 1 damage to player"
+
+[node name="Label5" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 6.0
+margin_top = 12.0
+margin_right = 343.0
+margin_bottom = 144.0
+text = "Select a dice from your pouch to add it
+to the field"
+
+[node name="Label6" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 500.0
+margin_top = 125.0
+margin_right = 885.0
+margin_bottom = 257.0
+text = "Click a dice on the field to return it to your pouch"
+
+[node name="Label7" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 821.0
+margin_top = 36.0
+margin_right = 1206.0
+margin_bottom = 168.0
+text = "Click here to roll the dice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="CanvasLayer/Instructions"]
+margin_left = 4.0
+margin_top = 171.0
+margin_right = 389.0
+margin_bottom = 303.0
+text = "Some rolls will have special properties
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Instructions"]
+position = Vector2( 49, 256 )
+texture = ExtResource( 30 )
+
+[node name="Label8" type="Label" parent="CanvasLayer/Instructions/Sprite"]
+margin_left = 19.0
+margin_top = -13.0
+margin_right = 404.0
+margin_bottom = 119.0
+text = "The die breaks"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/Instructions"]
+position = Vector2( 50, 290 )
+texture = ExtResource( 31 )
+
+[node name="Label8" type="Label" parent="CanvasLayer/Instructions/Sprite2"]
+margin_left = 19.0
+margin_top = -13.0
+margin_right = 404.0
+margin_bottom = 119.0
+text = "Blocks all damage to you this turn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite3" type="Sprite" parent="CanvasLayer/Instructions"]
+position = Vector2( 49, 330 )
+texture = ExtResource( 29 )
+
+[node name="Label8" type="Label" parent="CanvasLayer/Instructions/Sprite3"]
+margin_left = 19.0
+margin_top = -13.0
+margin_right = 404.0
+margin_bottom = 119.0
+text = "Heals if not at max health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite4" type="Sprite" parent="CanvasLayer/Instructions"]
+position = Vector2( 48, 367 )
+texture = ExtResource( 17 )
+
+[node name="Label8" type="Label" parent="CanvasLayer/Instructions/Sprite4"]
+margin_left = 19.0
+margin_top = -13.0
+margin_right = 404.0
+margin_bottom = 119.0
+text = "Damage to enemy increased by 1
+this round"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( 513, 300 )
 current = true
@@ -626,6 +775,52 @@ script = ExtResource( 20 )
 
 [node name="CameraTween" type="Tween" parent="MainCamera"]
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+autoplay = true
+
+[node name="DiceDown" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = 5.0
+
+[node name="DiceUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+volume_db = 5.0
+
+[node name="Roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+
+[node name="DiceBreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+
+[node name="BothHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -10.0
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+volume_db = -10.0
+
+[node name="EnemyCrit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+volume_db = -10.0
+
+[node name="EnemyDead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+volume_db = -10.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 981.0
+margin_top = 551.0
+margin_right = 1029.0
+margin_bottom = 601.0
+texture_normal = ExtResource( 32 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="VictoryScreen/VictoryPanel/Return" to="." method="_on_Return_pressed"]
 [connection signal="pressed" from="DiceField/Roll" to="." method="_on_Roll_pressed"]
 [connection signal="tween_all_completed" from="CanvasLayer/FadeOut/Tween" to="CanvasLayer/FadeOut" method="_on_Tween_tween_all_completed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

@@ -38,9 +38,9 @@ func initialize(range_info):
 		elif range_difference > 10:
 			new_bar.rect_size.x = 48 + 8 * (9)
 			if x["Range"][0] == -99:
-				new_bar.get_node("Label").text = "<" + str(x["Range"][1])
+				new_bar.get_node("Label").text = "<=" + str(x["Range"][1])
 			else:
-				new_bar.get_node("Label").text = str(x["Range"][0]) + "<"
+				new_bar.get_node("Label").text = str(x["Range"][0]) + "=<"
 		else:
 			new_bar.rect_size.x = 48 + 8 * (range_difference - 1)
 			new_bar.get_node("Label").text = str(x["Range"][0]) + "-" + str(x["Range"][1])

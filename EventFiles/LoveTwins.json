@@ -1,0 +1,30 @@
+{
+	"Name": "The Love Twins",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/LoverTwins.png",
+	"Text": "You encounter an Incubus and a Succubus. 'Hey Lover,' the incubus says, 'You're coming home with one of us, so choose who it'll be.'",
+	"Choices":[
+		{"Text": "Choose the Incubus",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The Incubus grins, 'We're going to have a great time.'",
+				"Image" : "res://Events/Incubus.png",
+				"Events" : ["FightIncubus"],
+				"Probability" : 1}
+				]
+		},
+		{"Text": "Choose the Succubus",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The Succubus blows you a kiss, 'I'll show you a good time, sweetie.'",
+				"Image" : "res://Events/Succubus.png",
+				"Events" : ["FightSuccubus"],
+				"Probability" : 1}
+				],
+		}
+		]
+}

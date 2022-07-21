@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BothHit.wav-e3eaa34bdb9a0bdb27fe5c2cc3235ae5.sample"
+
+[deps]
+
+source_file="res://Sounds/BothHit.wav"
+dest_files=[ "res://.import/BothHit.wav-e3eaa34bdb9a0bdb27fe5c2cc3235ae5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

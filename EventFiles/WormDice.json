@@ -1,0 +1,38 @@
+{
+	"Name": "Treasure Guzzler",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/Worm.png",
+	"Text": "A wormy growth protrudes from the wall, it's mouth ringed with teeth.  Inside its gullet you see a glint of treasure",
+	"Choices":[
+		{"Text": "Reach into the mouth",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "You deftly avoid the teeth to get your prize.",
+				"Image" : "res://Events/WormDice.png",
+				"Events" : ["RareDice"],
+				"Probability" : 10},
+				{"Text" : "Your arm is torn by the jagged teeth, but the prize is worth it.",
+				"Image" : "res://Events//WormDice.png",
+				"Events" : ["OneDamage","RareDice"],
+				"Probability" : 60},
+				{"Text" : "The shine you saw was just a piece of colored glass... Completely worthless",
+				"Image" : "res://Events/WormGlass.png",
+				"Events" : ["OneDamage"],
+				"Probability" : 5}
+				]
+		},
+		{"Text": "Better Not",
+			"Requirements":{
+				
+		},
+			"Outcomes":[
+				{"Text" : "Yeah, that doesn't look sanitary. No thanks.",
+				"Image" : "res://Events/Worm.png",
+				"Events" : [],
+				"Probability" : 1}
+				],
+		}
+		]
+}

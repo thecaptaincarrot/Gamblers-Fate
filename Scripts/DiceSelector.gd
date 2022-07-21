@@ -24,3 +24,9 @@ func update():
 			$MarginContainer/ScrollContainer/OptionContainer.add_child(new_option)
 			new_option.connect("FieldAdd",get_parent(),"add_to_field")
 			new_option.connect("FieldRemove",get_parent(),"remove_from_field")
+
+
+func dice_remove(index):
+	for option in $MarginContainer/ScrollContainer/OptionContainer.get_children():
+		if option.inventory_index == index:
+			option.on_field_dice_removed()

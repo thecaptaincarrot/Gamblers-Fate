@@ -3,7 +3,7 @@
 	"Description" : "Given to you by the devil himself, a 6-sided dice of ivory white material. Never breaks.",
 	"Values" : [1,2,3,4,5,6],
 	"Break" : [1],
-	"Block" : [],
+	"Block" : [4],
 	"Heal" : [],
 	"Target" : [],
 	"Color": "#ffefb5",

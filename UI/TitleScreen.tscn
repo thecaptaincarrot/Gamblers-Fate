@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/my_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/CoolFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/CreditsPanel.gd" type="Script" id=3]
+[ext_resource path="res://UI/TitleScreen.gd" type="Script" id=4]
+[ext_resource path="res://Music/GamblersTheme.wav" type="AudioStream" id=5]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -349.0
+margin_top = 28.0
+margin_right = 349.0
+margin_bottom = 163.0
+custom_fonts/font = ExtResource( 2 )
+text = "Gambler's Fate
+Prepare to Dice Edition"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 530, 632 )
+amount = 32
+lifetime = 2.5
+emission_shape = 2
+emission_rect_extents = Vector2( 512, 1 )
+gravity = Vector2( 0, -98 )
+scale_amount = 12.0
+color = Color( 1, 0, 0, 1 )
+hue_variation = 0.13
+hue_variation_random = 1.0
+
+[node name="StoryMode" type="Button" parent="."]
+margin_left = 443.0
+margin_top = 193.0
+margin_right = 587.0
+margin_bottom = 232.0
+text = "Story Mode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoEscape" type="Button" parent="."]
+margin_left = 443.0
+margin_top = 249.0
+margin_right = 587.0
+margin_bottom = 288.0
+text = "No Escape"
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 442.0
+margin_top = 305.0
+margin_right = 586.0
+margin_bottom = 344.0
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsPanel" type="Panel" parent="."]
+visible = false
+margin_left = 357.0
+margin_top = 74.0
+margin_right = 674.0
+margin_bottom = 479.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+
+[node name="Label" type="Label" parent="CreditsPanel/MarginContainer"]
+margin_right = 285.0
+margin_bottom = 375.0
+theme = ExtResource( 1 )
+text = "CREDITS:
+Code, Art, Music, Sound Effects:
+Captain Carrot
+Additional sound effects made using SFXR
+Fonts use:
+Roboto by Christian Robertson
+Celtic Hand by Dieter Steffmann
+
+Special thanks to:
+Nwah, Cag, Gogorisika, xghoel, nwah,ha1fdead, Flavious59,Team_Rabbit,Umbra,
+BobBonanza"
+align = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 337.0
+margin_top = 576.0
+margin_right = 695.0
+margin_bottom = 590.0
+text = "Can you tell that the title screen is the last thing I made"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[connection signal="pressed" from="StoryMode" to="." method="_on_StoryMode_pressed"]
+[connection signal="pressed" from="NoEscape" to="." method="_on_NoEscape_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]

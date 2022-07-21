@@ -12,7 +12,11 @@
 		{"Type" : "Fail",
 		"Range" : [7,9]},
 		{"Type" : "Damage",
-		"Range" : [10,99]}],
+		"Range" : [10,12]},
+		{"Type" : "Fail",
+		"Range" : [13,15]},
+		{"Type" : "Damage",
+		"Range" : [16,99]}],
 	"Drops" : "Bag",	
 	"Gold" : [100,200],
 	"Type" : "Common"

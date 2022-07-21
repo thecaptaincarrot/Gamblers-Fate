@@ -1,0 +1,30 @@
+{
+	"Name": "The Demon's Toll",
+	"Background" : "res://Events/EventBackground.png",
+	"Image": "res://Events/LesserDemon.png",
+	"Text": "A Lesser demon blocks your way. '100 gold to pass,' it growls simply.  It doesn't look like there's another way around.",
+	"Choices":[
+		{"Text": "Uh, sure. Here you go. [100 Gold]",
+			"Requirements":{
+				"Gold" : 100
+				},
+			"Outcomes":[
+				{"Text" : "The demon grunts in... disappointment? But it steps out of your way nonetheless.",
+				"Image" : "res://Events/LesserDemon.png",
+				"Events" : ["100Gold"],
+				"Probability" : 1}
+				]
+		},
+		{"Text": "I don't think so.",
+			"Requirements":{
+				
+			},
+			"Outcomes":[
+				{"Text" : "The demon smiles in satisfaction as its fire bursts to life",
+				"Image" : "res://Events/LesserDemon1.png",
+				"Events" : ["FightLesser"],
+				"Probability" : 1}
+				],
+		}
+		]
+}

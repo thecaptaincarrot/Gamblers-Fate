@@ -1,11 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/my_theme.tres" type="Theme" id=1]
-[ext_resource path="res://UI/CelticHand.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 2 )
+[ext_resource path="res://UI/CoolFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://GameOver.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=2]
 resource_name = "red"
@@ -45,6 +42,7 @@ tracks/0/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,14 +56,13 @@ __meta__ = {
 }
 
 [node name="DEAD" type="Label" parent="."]
-self_modulate = Color( 1, 0.604899, 0.604899, 1 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -273.0
 margin_top = 87.0
 margin_right = 260.0
 margin_bottom = 153.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "Y O U   D I E D"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -81,9 +78,8 @@ margin_left = -344.0
 margin_top = 318.0
 margin_right = 352.0
 margin_bottom = 453.0
-custom_fonts/font = SubResource( 1 )
-text = "Please refresh the page
-to restart"
+custom_fonts/font = ExtResource( 2 )
+text = "You cleared x Tiles"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,3 +87,17 @@ __meta__ = {
 
 [node name="redanim" type="AnimationPlayer" parent="DEAD2"]
 anims/red = SubResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 385.0
+margin_top = 484.0
+margin_right = 595.0
+margin_bottom = 522.0
+text = "Do you dare try again?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

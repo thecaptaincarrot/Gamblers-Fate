@@ -3,7 +3,7 @@ extends Node
 const MINX = 0
 const MAXX = 6
 
-var map_height = 9
+var map_height = 0
 
 var map = []
 var player_position = 0 #default start, by index
@@ -22,7 +22,22 @@ func _ready():
 #	pass
 
 
+func reset_story_mode():
+	player_position = 0
+	map_height = 9
+	initialize_map()
+
+
+
+func reset_endless_mode():
+	player_position = 0
+	map_height = 100
+	initialize_map()
+
+
+
 func initialize_map():
+	map.clear()
 	#Map dictionary: {"Type": ("Enemy",Event"),"Identifier":(Name of file we're loading, either event or enemy)\
 	#"GridVector":Vector2((0-7),(1+)),"MapPosition":Vector2(where to draw), "Connections":[index, on, array]}
 	#var map = []
@@ -31,8 +46,10 @@ func initialize_map():
 	var new_start = {"Index": 0, "Type": "Start","Identifier": null, "GridVector" : Vector2(3,0),"MapPosition" : Vector2(282,300), "Connections" : [] }
 	var index = 1
 	map.append(new_start)
+	print(map_height)
 	#Connections added one step back
 	for i in range (1,map_height):
+		print(i)
 		var num_nodes = 0 #random between 2 and 3?
 		var x_possible = []
 		
@@ -134,18 +151,23 @@ func initialize_map():
 	var new_exit = {"Index": index, "Type": "Exit","Identifier": null, "GridVector" : Vector2(3,0),"MapPosition" : Vector2(282,300 + (map_height * -100)), "Connections" : [] }
 	for node in get_row(map_height - 1):
 		node["Connections"].append(new_exit["Index"])
-	print(new_exit)
 	map.append(new_exit)
 
 
 func random_type():
-	var dice_roll = randi() % 10
-	if dice_roll <= 4: # 1 or 0, coin flip
+	var dice_roll = randi() % 13
+	if dice_roll <= 6: # 1 or 0, coin flip
+#		return ["Enemy",EnemyHandler.get_random_enemy()]
 		return ["Enemy",EnemyHandler.get_random_enemy()]
 	elif dice_roll <= 8:
 		return ["Event",EventHandler.get_random_event()]
+	elif dice_roll <= 9:
+		return ["FakeEvent",EnemyHandler.get_random_enemy()]
+	elif dice_roll <= 10:
+		return ["Heal","One"]
 	else:
 		return ["Boss",EnemyHandler.get_random_boss()]
+
 
 func get_row(index):
 	var nodes = []

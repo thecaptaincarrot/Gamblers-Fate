@@ -49,11 +49,11 @@ func load_dice():
 		var dice_dict = {}
 		var file_to_read = File.new()
 		
-		var path_to_file = directory_path + "/" + file_name
+		var path_to_file = directory_path +  file_name
 		file_to_read.open(path_to_file, File.READ)
 		
 		var text = file_to_read.get_as_text()
-		dice_dict = parse_json(text)
+		dice_dict = JSON.parse(text).result
 		file_to_read.close()
 		
 		
@@ -158,5 +158,6 @@ func generate_rare_bag(): #generates 3 dice, 1 rare 2 uncommon
 	return dice_indices
 
 
-
+func get_knucklebone():
+	return dice[KNUCKLEBONE]
 

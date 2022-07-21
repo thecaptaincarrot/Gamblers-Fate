@@ -8,9 +8,9 @@
 		{"Type" : "Fail",
 		"Range" : [1,5]},
 		{"Type" : "Damage",
-		"Range" : [6,6]},
+		"Range" : [6,7]},
 		{"Type" : "Fail",
-		"Range" : [6,99]}],
+		"Range" : [8,99]}],
 	"Drops" : "Bag",
 	"Gold" : [50,100],
 	"Type" : "Common"
