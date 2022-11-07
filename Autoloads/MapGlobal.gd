@@ -84,7 +84,11 @@ func initialize_map():
 		for x in x_vectors:
 			var new_node = {}
 			#Type and Identifier
-			var type_tupple = random_type()
+			var type_tupple
+			if i <= 2:
+				type_tupple = random_type_easy()
+			else:
+				type_tupple = random_type()
 			new_node["Type"] = type_tupple[0]
 			new_node["Identifier"] = type_tupple[1]
 			#Grid Vector and Map Position
@@ -152,6 +156,18 @@ func initialize_map():
 	for node in get_row(map_height - 1):
 		node["Connections"].append(new_exit["Index"])
 	map.append(new_exit)
+
+
+func random_type_easy():
+	var dice_roll = randi() % 6
+	if dice_roll <= 3: # 1 or 0, coin flip
+#		return ["Enemy",EnemyHandler.get_random_enemy()]
+		return ["Enemy",EnemyHandler.get_random_common_enemy()]
+	elif dice_roll <= 5:
+		return ["Event",EventHandler.get_random_event()]
+	else:
+		return ["FakeEvent",EnemyHandler.get_random_common_enemy()]
+
 
 
 func random_type():
